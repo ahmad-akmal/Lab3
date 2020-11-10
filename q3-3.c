@@ -5,24 +5,25 @@
 
 int main(void) {
   int pipefds[2];
-  int buffer;
-
+  char buffer[5];
+ 
   if(pipe(pipefds) == -1) {
     perror("pipe");
     exit(EXIT_FAILURE);
   }
-
-  int nombor = 22;
-
-  printf("Writing a number to pipe...\n");
-  write(pipefds[1], &nombor, sizeof(nombor));
+ 
+  char *pin = "4128\0";
+ 
+  printf("Writing PIN to pipe...\n");
+  write(pipefds[1], pin, 5);
   printf("Done.\n\n");
-
-  printf("Reading a number from pipe...\n");
-  read(pipefds[0], &buffer, sizeof(buffer));
+ 
+  printf("Reading PIN from pipe...\n");
+  read(pipefds[0], buffer, 5);
   printf("Done.\n\n");
-
-  printf("Number from pipe: %d\n", buffer);
-
+ 
+  printf("PIN from pipe: %s\n", buffer);
+ 
   return EXIT_SUCCESS;
 }
+
