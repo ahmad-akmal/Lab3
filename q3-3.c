@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-
+ 
 int main(void) {
   int pipefds[2];
   char buffer[5];
